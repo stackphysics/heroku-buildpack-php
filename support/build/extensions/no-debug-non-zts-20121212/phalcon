@@ -1,7 +1,5 @@
-#!/usr/bin/env bash
+#!/bin/bash
 # Build Path: /app/.heroku/php/
-# Build Deps: php-5.5.11
-
 
 OUT_PREFIX=$1
 
@@ -9,22 +7,21 @@ OUT_PREFIX=$1
 set -o pipefail
 # fail harder
 set -eux
-dep_dirname=phalcon
-dep_url=https://github.com/phalcon/cphalcon.git
 
-echo "-----> Building Phalcon"
+DEFAULT_VERSION="8.34"
+dep_version=${VERSION:-$DEFAULT_VERSION}
+dep_dirname=pcre-${dep_version}
+dep_archive_name=${dep_dirname}.tar.gz
+dep_url=http://sourceforge.net/projects/pcre/files/pcre/${dep_version}/${dep_archive_name}
 
-git clone --depth=1 ${dep_url} 
+echo "-----> Building PCRE ${dep_version}..."
+
+curl -L ${dep_url} | tar xz
 
 pushd ${dep_dirname}
-export PATH=${OUT_PREFIX}/bin:${PATH}
-phpize
-./configure \
-    --prefix=${OUT_PREFIX} \
-    --enable-phalcon
+./configure --prefix=${OUT_PREFIX}
 make -s -j 9
-# php was a build dep, and it's in $OUT_PREFIX. nuke that, then make install so all we're left with is the extension
-rm -rf ${OUT_PREFIX}/*
 make install -s
 popd
+
 echo "-----> Done."
