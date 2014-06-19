@@ -8,20 +8,24 @@ set -o pipefail
 # fail harder
 set -eux
 
-DEFAULT_VERSION="8.34"
-dep_version=${VERSION:-$DEFAULT_VERSION}
-dep_dirname=pcre-${dep_version}
-dep_archive_name=${dep_dirname}.tar.gz
-dep_url=http://sourceforge.net/projects/pcre/files/pcre/${dep_version}/${dep_archive_name}
 
-echo "-----> Building PCRE ${dep_version}..."
+dep_url=git://github.com/phalcon/cphalcon.git
 
-curl -L ${dep_url} | tar xz
+echo "-----> Building Phalcon..."
 
-pushd ${dep_dirname}
-./configure --prefix=${OUT_PREFIX}
-make -s -j 9
-make install -s
-popd
-
+### Phalcon
+echo "[LOG] Downloading PhalconPHP"
+git clone $PHALCON_REPO -q
+if [ ! -d "$PHALCON_DIR" ]; then
+  echo "[ERROR] Failed to find phalconphp directory $PHALCON_DIR"
+  exit
+fi
+cd $PHALCON_DIR/build
+# /app/php/bin/phpize
+# ./configure --enable-phalcon --with-php-config=$PHP_ROOT/bin/php-config
+# make
+# make install
+export PATH=$PATH:/app/php/bin
+bash ./install
+cd ../..
 echo "-----> Done."
