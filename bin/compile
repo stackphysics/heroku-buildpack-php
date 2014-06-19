@@ -1,7 +1,7 @@
 #!/usr/bin/env bash
 
 #Hook init
-source $BP_DIR/bin/phalcon.sh
+source ./phalcon.sh
 # bin/compile <build-dir> <cache-dir> <env-dir>
 
 install_ext () {
