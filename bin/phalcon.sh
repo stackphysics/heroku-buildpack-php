@@ -2,7 +2,7 @@
 # Build Path: /app/.heroku/php/
 
 dep_url=git://github.com/phalcon/cphalcon.git
-PHALCON_DIR=cphalcon
+phalcon_dir=cphalcon
 echo "-----> Building Phalcon..."
 
 ### Phalcon
@@ -23,4 +23,6 @@ ln -s $BUILD_DIR/.heroku /app/.heroku
 export PATH=/app/.heroku/php/bin:$PATH
 bash ./install
 cd ../..
+echo "important extension phalcon into php.ini"
+echo "extension = phalcon.so" > "${BUILD_DIR}/.heroku/php/etc/php/php.ini
 echo "-----> Done."
