@@ -26,7 +26,8 @@ cd $PHALCON_DIR/build
 # make
 # make install
 export PATH=$PATH:/app/.heroku/php/bin
-which phpize
+A=which phpize
+echo "$A"
 /app/.heroku/php/bin/phpize
 bash ./install
 cd ../..
