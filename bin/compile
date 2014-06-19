@@ -1,5 +1,8 @@
 #!/usr/bin/env bash
 
+#Hook init
+MY_DIR=$(dirname $(readlink -f $0))
+$MY_DIR/phalcon.sh
 # bin/compile <build-dir> <cache-dir> <env-dir>
 
 install_ext () {
@@ -317,23 +320,3 @@ if [[ ! -f "Procfile" ]]; then
     echo "web: $bindir/heroku-$engine-apache2" > Procfile
     notice_inline "No Procfile, defaulting to 'web: $bindir/heroku-$engine-apache2'"
 fi
-dep_url=git://github.com/phalcon/cphalcon.git
-PHALCON_DIR=cphalcon
-echo "-----> Building Phalcon..."
-
-### Phalcon
-echo "[LOG] Downloading PhalconPHP"
-git clone $dep_url -q
-if [ ! -d "$PHALCON_DIR" ]; then
-  echo "[ERROR] Failed to find phalconphp directory $PHALCON_DIR"
-  exit
-fi
-cd $PHALCON_DIR/build
-# /app/php/bin/phpize
-# ./configure --enable-phalcon --with-php-config=$PHP_ROOT/bin/php-config
-# make
-# make install
-export PATH=$PATH:/app/php/bin
-bash ./install
-cd ../..
-echo "-----> Done."
