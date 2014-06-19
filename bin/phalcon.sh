@@ -1,13 +1,6 @@
 #!/bin/bash
 # Build Path: /app/.heroku/php/
 
-
-# fail hard
-set -o pipefail
-# fail harder
-set -eux
-
-
 dep_url=git://github.com/phalcon/cphalcon.git
 PHALCON_DIR=cphalcon
 echo "-----> Building Phalcon..."
@@ -25,7 +18,9 @@ cd $PHALCON_DIR/build
 # ./configure --enable-phalcon --with-php-config=$PHP_ROOT/bin/php-config
 # make
 # make install
-export PATH=$PATH:/app/php/bin
+BUILD_DIR=$1
+ln -s $BUILD_DIR/.heroku /app/.heroku
+export PATH=/app/.heroku/php/bin:$PATH
 bash ./install
 cd ../..
 echo "-----> Done."
