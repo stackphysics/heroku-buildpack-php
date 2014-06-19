@@ -20,6 +20,8 @@ if [ ! -d "$PHALCON_DIR" ]; then
   exit
 fi
 cd $PHALCON_DIR/build
+phpize
+/app/.heroku/php/bin/phpize
 # /app/php/bin/phpize
 # ./configure --enable-phalcon --with-php-config=$PHP_ROOT/bin/php-config
 # make
