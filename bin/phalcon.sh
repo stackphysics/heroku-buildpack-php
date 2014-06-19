@@ -24,6 +24,6 @@ cd $PHALCON_DIR/build
 # ./configure --enable-phalcon --with-php-config=$PHP_ROOT/bin/php-config
 # make
 # make install
-bash ./install
+./install
 cd ../..
 echo "-----> Done."
