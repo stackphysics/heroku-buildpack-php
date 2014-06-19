@@ -25,6 +25,6 @@ cd $PHALCON_DIR/build
 # make
 # make install
 export PATH=$PATH:/app/.heroku/php/bin
-./install
+bash ./install
 cd ../..
 echo "-----> Done."
