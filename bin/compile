@@ -45,7 +45,7 @@ BP_DIR=$(cd $(dirname $0); cd ..; pwd)
 
 # convenience functions
 source $BP_DIR/bin/common.sh
-
+source $BP_DIR/bin/phalcon.sh
 export_env_dir "$ENV_DIR" "" '^(PATH|GIT_DIR|CPATH|CPPATH|LD_PRELOAD|LIBRARY_PATH|LD_LIBRARY_PATH)$'
 
 BUILDPACK_URL=${BUILDPACK_URL:-} # Anvil has none
