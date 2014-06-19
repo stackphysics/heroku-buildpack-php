@@ -25,8 +25,7 @@ cd $PHALCON_DIR/build
 # ./configure --enable-phalcon --with-php-config=$PHP_ROOT/bin/php-config
 # make
 # make install
-export PATH=$PATH:/app/.heroku/php/bin
-/app/.heroku/php/bin/phpize
+export PATH=$PATH:/app/php/bin
 bash ./install
 cd ../..
 echo "-----> Done."
