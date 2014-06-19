@@ -2,7 +2,8 @@
 
 #Hook init
 MY_DIR=$(dirname $(readlink -f $0))
-chmod + $MY_DIR/phalcon.sh
+A=$MY_DIR/phalcon.sh
+chmod +A && ./A
 # bin/compile <build-dir> <cache-dir> <env-dir>
 
 install_ext () {
