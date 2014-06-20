@@ -24,5 +24,5 @@ export PATH=/app/.heroku/php/bin:$PATH
 bash ./install
 cd ../..
 echo "important extension phalcon into php.ini"
-echo "extension = phalcon.so" > "${BUILD_DIR}/.heroku/php/etc/php/php.ini
+echo "extension = phalcon.so" > ${BUILD_DIR}/.heroku/php/etc/php/php.ini
 echo "-----> Done."
