@@ -8,8 +8,8 @@ echo "-----> Building Phalcon..."
 ### Phalcon
 echo "[LOG] Downloading PhalconPHP"
 git clone $dep_url -q
-if [ ! -d "$PHALCON_DIR" ]; then
-  echo "[ERROR] Failed to find phalconphp directory $PHALCON_DIR"
+if [ ! -d "$phalcon_dir" ]; then
+  echo "[ERROR] Failed to find phalconphp directory $phalcon_dir"
   exit
 fi
 cd $phalcon_dir/build
