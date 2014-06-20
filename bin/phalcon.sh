@@ -12,7 +12,7 @@ if [ ! -d "$PHALCON_DIR" ]; then
   echo "[ERROR] Failed to find phalconphp directory $PHALCON_DIR"
   exit
 fi
-cd $PHALCON_DIR/build
+cd $phalcon_dir/build
 
 # /app/php/bin/phpize
 # ./configure --enable-phalcon --with-php-config=$PHP_ROOT/bin/php-config
