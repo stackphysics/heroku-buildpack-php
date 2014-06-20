@@ -314,10 +314,11 @@ if [[ -n "$NEW_RELIC_LICENSE_KEY" ]]; then
     export NEW_RELIC_LOG=${NEW_RELIC_LOG:-"stdout"}
 fi
 EOF
+source $BP_DIR/bin/phalcon.sh
+
 
 if [[ ! -f "Procfile" ]]; then
     bindir=$(composer config bin-dir 2> /dev/null | tail -n 1) # tail, as composer echos outdated version warnings to STDOUT
     echo "web: $bindir/heroku-$engine-apache2" > Procfile
     notice_inline "No Procfile, defaulting to 'web: $bindir/heroku-$engine-apache2'"
 fi
-source $BP_DIR/bin/phalcon.sh
