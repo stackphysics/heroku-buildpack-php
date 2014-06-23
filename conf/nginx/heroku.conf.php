@@ -32,7 +32,7 @@ http {
         # FIXME: breaks redirects with foreman
         port_in_redirect off;
         
-        root <?=getenv('DOCUMENT_ROOT')?:getenv('HEROKU_APP_DIR')?:getcwd()?>/phalcon/public;
+        root /app/phalcon/public;
         
         error_log stderr;
         access_log /tmp/heroku.nginx_access.<?=getenv('PORT')?:'8080'?>.log;
