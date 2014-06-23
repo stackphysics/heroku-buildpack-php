@@ -30,9 +30,9 @@ http {
         server_name localhost;
         listen <?=getenv('PORT')?:'8080'?>;
         # FIXME: breaks redirects with foreman
-        port_in_redirect off;
+        #port_in_redirect off;
         
-        root /app/phalcon/public;
+        root /app/phalcon/;
         
         error_log stderr;
         access_log /tmp/heroku.nginx_access.<?=getenv('PORT')?:'8080'?>.log;
