@@ -28,22 +28,17 @@ http {
     server {
         # TODO: use X-Forwarded-Host? http://comments.gmane.org/gmane.comp.web.nginx.english/2170
         server_name localhost;
-        listen 80;
+        listen <?=getenv('PORT')?:'8080'?>;
         # FIXME: breaks redirects with foreman
-
+        port_in_redirect off;
+        
+        root <?=getenv('DOCUMENT_ROOT')?:getenv('HEROKU_APP_DIR')?:getcwd()?>;
         
         error_log stderr;
         access_log /tmp/heroku.nginx_access.<?=getenv('PORT')?:'8080'?>.log;
         
         include <?=getenv('HEROKU_PHP_NGINX_CONFIG_INCLUDE')?>;
         
-          root /app/phalcon/public;
-    try_files $uri $uri/ @rewrite;
-
-    location @rewrite {
-        rewrite ^/(.*)$ /index.php?_url=/$1;
-    }  
-    
         # restrict access to hidden files, just in case
         location ~ /\. {
             deny all;
