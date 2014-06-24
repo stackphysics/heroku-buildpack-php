@@ -32,28 +32,14 @@ http {
         # FIXME: breaks redirects with foreman
         #port_in_redirect off;
         
-        root $root_path ''/app/phalcon/public';
+        root $root_path '/app/phalcon/public';
         
         error_log stderr;
         access_log /tmp/heroku.nginx_access.<?=getenv('PORT')?:'8080'?>.log;
         
         include <?=getenv('HEROKU_PHP_NGINX_CONFIG_INCLUDE')?>;
         
-        location / {
-        root   $root_path;
-        index  index.php index.html index.htm;
-
-        # if file exists return it right away
-        if (-f $request_filename) {
-            break;
-        }
-
-        # otherwise rewrite it
-        if (!-e $request_filename) {
-            rewrite ^(.+)$ /index.php?_url=/$1 last;
-            break;
-        }
-    }
+        
 
         
         # restrict access to hidden files, just in case
